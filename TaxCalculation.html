@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script>
+    function findIT(f){
+        var aivalue = parseFloat(f.ai.value)
+        var taxvalue
+        if(aivalue<=10000){
+            taxvalue=0;
+        }
+        else if(aivalue<=150000)
+        {
+            taxvalue=aivalue*0.05
+        }
+        else   
+        {
+            taxvalue-aivalue*0.10
+        }
+        f.tax.value=taxvalue
+    }
+</script>
+</head>
+<body>
+<form>
+<center>
+    Income tax calculation
+    <br><br><br>
+    Enter your annual income:<input type="text" name="ai">
+    <br>
+    <input type="button" value="Find Tax" onClick="findIT(this.form)"> 
+    <br><br>
+    Your Tax is <input type="text" name="tax">
+</center>
+</form> 
+</body>
+</html>
