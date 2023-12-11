@@ -28,7 +28,7 @@ function validate()
     errors[3] = "<span style='color:red'>Please enter your user id!</span>"; 
     errors[4] = "<span style='color:red'>Please enter your password!</span>";
     errors[5] = "<span style='color:red'>Please confirm your password!</span>";
-for (1 in inputs)
+for (var i in inputs)
 {
     var errMessage = errors[i];
     var div = divs[i];
@@ -38,7 +38,7 @@ for (1 in inputs)
     {
         var atpos = inputs[i].indexOf("@");
         var dotpos = inputs[i].lastIndexOf(".");
-        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=Inputs[i].length)
+        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=inputs[i].length)
             document.getElementById('errEmail').innerHTML = "<span style='color: red'>Enter a valid email address!</span>"; 
         else
             document.getElementById(div).innerHTML = "OK!";
@@ -59,12 +59,12 @@ for (1 in inputs)
     function finalValidate()
     {
     var count = 0;
-    for(i=0;i<6;1++){
+    for(var i=0;i<6;i++){
         var div = divs[1];
         if(document.getElementById(div).innerHTML == "OK!")
         count = count + 1;
     }
-    if(count = 6)
+    if(count == 6)
         document.getElementById("errFinal").innerHTML = "All the data you entered is correct!!!";
     }
     </script>
