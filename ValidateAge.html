@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
+    <title>Form Validation</title>
+    <script type= 'text/javascript'>
+        function validate(){
+            var a = document.form1.age.value
+            if(a>18 && a<=60)
+                document.write("successful");   //alert("successful")
+            else
+                document.write("wrong data");
+        }
+    </script>
+    </head>
+    <body>
+        <form name="form1" onsubmit = "validate()">
+            <h3>Enter age</h3>
+            <input type="text" name="age">
+            <input type="submit" value="OK">
+        </form>
+    </body>
+    </html>
