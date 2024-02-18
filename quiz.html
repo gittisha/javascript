@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+</head>
+<body>
+
+<script>
+    function evaluateQuiz() {
+        // Hardcoded correct answers for demonstration purposes
+        var correctAnswers = ["option2", "option2", "option2", "option1", "option1"];
+
+        // Retrieve user-selected answers from the form
+        var userAnswers = [];
+        for (var i = 1; i <= 5; i++) {
+            var selectedOption = document.querySelector('input[name="question' + i + '"]:checked');
+            if (selectedOption) {
+                userAnswers.push(selectedOption.value);
+            } else {
+                userAnswers.push(null);
+            }
+        }
+
+        // Check if the user's answers are correct
+        var allCorrect = true;
+        for (var i = 0; i < 5; i++) {
+            if (correctAnswers[i] !== userAnswers[i]) {
+                allCorrect = false;
+                break;
+            }
+        }
+
+        // Display the result
+        var resultContainer = document.getElementById("quizResult");
+        resultContainer.innerHTML = "<h2>Quiz Result:</h2>";
+
+        if (allCorrect) {
+            resultContainer.innerHTML += "<p>Congratulations! All answers are correct.</p>";
+        } else {
+            resultContainer.innerHTML += "<p>Sorry, some answers are incorrect. Please try again.</p>";
+        }
+    }
+</script>
+
+<h2>Quiz</h2>
+<form onsubmit="event.preventDefault(); evaluateQuiz();">
+    <h3>Question 1: What is 2 + 2?</h3>
+    <input type="radio" name="question1" value="option1"> 3
+    <input type="radio" name="question1" value="option2"> 4
+    <input type="radio" name="question1" value="option3"> 5
+    <br>
+
+    <h3>Question 2: What is the capital of France?</h3>
+    <input type="radio" name="question2" value="option1"> Paris
+    <input type="radio" name="question2" value="option2"> Berlin
+    <input type="radio" name="question2" value="option3"> London
+    <br>
+
+    <h3>Question 3: Which planet is known as the Red Planet?</h3>
+    <input type="radio" name="question3" value="option1"> Venus
+    <input type="radio" name="question3" value="option2"> Mars
+    <input type="radio" name="question3" value="option3"> Jupiter
+    <br>
+
+    <h3>Question 4: What is the largest mammal on Earth?</h3>
+    <input type="radio" name="question4" value="option1"> Elephant
+    <input type="radio" name="question4" value="option2"> Blue Whale
+    <input type="radio" name="question4" value="option3"> Giraffe
+    <br>
+
+    <h3>Question 5: Who wrote "Romeo and Juliet"?</h3>
+    <input type="radio" name="question5" value="option1"> William Shakespeare
+    <input type="radio" name="question5" value="option2"> Jane Austen
+    <input type="radio" name="question5" value="option3"> Charles Dickens
+    <br>
+
+    <br>
+    <input type="submit" value="Submit Quiz">
+</form>
+
+<div id="quizResult"></div>
+
+</body>
+</html>

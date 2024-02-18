@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Ticket Reservation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+      color: green;
+    }
+
+    #error {
+      font-size: 16px;
+      margin-top: 10px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Railway Ticket Reservation</h2>
+
+  <form onsubmit="return validateForm()">
+    <label for="fromCity">From City:</label>
+    <input type="text" id="fromCity" name="fromCity" required>
+
+    <label for="toCity">To City:</label>
+    <input type="text" id="toCity" name="toCity" required>
+
+    <label for="passengerName">Passenger Name:</label>
+    <input type="text" id="passengerName" name="passengerName" maxlength="20" required>
+
+    <label for="passengerAge">Passenger Age:</label>
+    <input type="number" id="passengerAge" name="passengerAge" required>
+
+    <label for="registerNumber">Register Number:</label>
+    <input type="text" id="registerNumber" name="registerNumber" pattern="\d{9}" title="Enter a 9-digit register number" required>
+
+    <button type="submit">Reserve Ticket</button>
+  </form>
+
+  <div id="result"></div>
+  <div id="error"></div>
+
+  <script>
+    function validateForm() {
+      var fromCity = document.getElementById("fromCity").value;
+      var toCity = document.getElementById("toCity").value;
+      var passengerName = document.getElementById("passengerName").value;
+      var passengerAge = parseInt(document.getElementById("passengerAge").value);
+      var registerNumber = document.getElementById("registerNumber").value;
+
+      // Validation: From city and to city are different
+      if (fromCity === toCity) {
+        showError("From city and to city should be different.");
+        return false;
+      }
+
+      // Validation: Age should not be greater than 100
+      if (passengerAge > 100) {
+        showError("Passenger age should not be greater than 100.");
+        return false;
+      }
+
+      // Validation: Name should be a string and max length 20
+      if (!/^[a-zA-Z ]{1,20}$/.test(passengerName)) {
+        showError("Passenger name should be a string with a maximum length of 20.");
+        return false;
+      }
+
+      // Validation: Register number should be 9-digit
+      if (!/^\d{9}$/.test(registerNumber)) {
+        showError("Register number should be a 9-digit number.");
+        return false;
+      }
+
+      // If all validations pass, display success message
+      showResult("Ticket reserved successfully!");
+      return false; // Prevent form submission for this example
+    }
+
+    function showError(message) {
+      document.getElementById("error").innerHTML = message;
+      document.getElementById("result").innerHTML = "";
+    }
+
+    function showResult(message) {
+      document.getElementById("result").innerHTML = message;
+      document.getElementById("error").innerHTML = "";
+
+      // Display the result message for 3 seconds 
+      setTimeout(function() {
+        document.getElementById("result").innerHTML = "";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

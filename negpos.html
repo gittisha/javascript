@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Counter</title>
+  <style>
+    body {
+      text-align: center;
+      margin: 50px;
+    }
+
+    input {
+      padding: 8px;
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Number Counter</h2>
+
+  <label for="numbers">Enter Numbers (comma-separated):</label>
+  <input type="text" id="numbers" placeholder="e.g., -2, 5, 0, -7">
+
+  <br>
+
+  <button onclick="countNumbers()">Count Numbers</button>
+
+  <div id="result"></div>
+
+  <script>
+    function countNumbers() {
+      var inputNumbers = document.getElementById("numbers").value;
+
+      // Split the input string into an array of numbers
+      var numbersArray = inputNumbers.split(",").map(Number);
+
+      var positiveCount = 0;
+      var negativeCount = 0;
+      var zeroCount = 0;
+
+      // Iterate through the array to count positive, negative, and zero numbers
+      for (var i = 0; i < numbersArray.length; i++) {
+        if (numbersArray[i] > 0) {
+          positiveCount++;
+        } else if (numbersArray[i] < 0) {
+          negativeCount++;
+        } else {
+          zeroCount++;
+        }
+      }
+
+      // Display the result
+      document.getElementById("result").innerHTML =
+        "Positive Numbers: " + positiveCount + "<br>" +
+        "Negative Numbers: " + negativeCount + "<br>" +
+        "Zero Numbers: " + zeroCount;
+    }
+  </script>
+
+</body>
+</html>

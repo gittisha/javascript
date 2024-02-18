@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+</head>
+<body>
+
+<script>
+    function validateLogin() {
+        // Hardcoded username and password for demonstration purposes
+        var validUsername = "Tisha09";
+        var validPassword = "password";
+
+        // Retrieve user-entered credentials from the form
+        var enteredUsername = document.getElementById("username").value;
+        var enteredPassword = document.getElementById("password").value;
+
+        // Check if the entered credentials are valid
+        if (enteredUsername === validUsername && enteredPassword === validPassword) {
+            // Authentication successful
+            document.getElementById("loginMessage").innerHTML = "<h2>Login Successful!</h2>";
+        } else {
+            // Authentication failed
+            document.getElementById("loginMessage").innerHTML = "<h2>Login Failed. Please try again.</h2>";
+        }
+    }
+</script>
+
+<h2>Login Form</h2>
+<form onsubmit="event.preventDefault(); validateLogin();">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="Login">
+</form>
+
+<div id="loginMessage"></div>
+
+</body>
+</html>

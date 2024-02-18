@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Room Reservation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+      color: green;
+    }
+
+    #error {
+      font-size: 16px;
+      margin-top: 10px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Hotel Room Reservation</h2>
+
+  <form onsubmit="return validateForm()">
+    <label for="checkInDate">Check-in Date:</label>
+    <input type="date" id="checkInDate" name="checkInDate" required>
+
+    <label for="checkOutDate">Check-out Date:</label>
+    <input type="date" id="checkOutDate" name="checkOutDate" required><br>
+
+    <button type="submit">Reserve Room</button>
+  </form>
+
+  <div id="result"></div>
+  <div id="error"></div>
+
+  <script>
+    function validateForm() {
+      var checkInDate = new Date(document.getElementById("checkInDate").value);
+      var checkOutDate = new Date(document.getElementById("checkOutDate").value);
+
+      // Validation: Check-in date should be before check-out date
+      if (checkInDate >= checkOutDate) {
+        showError("Check-in date should be before the check-out date.");
+        return false;
+      }
+
+      // If all validations pass, display success message
+      showResult("Room reserved successfully!");
+      return false; 
+    }
+
+    function showError(message) {
+      document.getElementById("error").innerHTML = message;
+      document.getElementById("result").innerHTML = "";
+    }
+
+    function showResult(message) {
+      document.getElementById("result").innerHTML = message;
+      document.getElementById("error").innerHTML = "";
+
+      // Display the result message for 3 seconds 
+      setTimeout(function() {
+        document.getElementById("result").innerHTML = "";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

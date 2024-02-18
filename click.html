@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Counter</title>
+    <script>
+        // Function to increment the click count and update the display
+        function countClick() {
+            // Retrieve the current count from the local storage
+            var clickCount = localStorage.getItem('clickCount') || 0;
+
+            // Increment the count
+            clickCount++;
+
+            // Update the local storage with the new count
+            localStorage.setItem('clickCount', clickCount);
+
+            // Display the count on the webpage
+            document.getElementById('clickCountDisplay').innerText = clickCount;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Click Counter</h1>
+    
+    <p>Number of clicks: <span id="clickCountDisplay">0</span></p>
+
+    <!-- Link with an onclick event to trigger the countClick function -->
+    <a href="#" onclick="countClick()">Click me!</a>
+
+</body>
+</html>

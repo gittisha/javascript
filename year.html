@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Duration Calculator</title>
+  <style>
+    body {
+      text-align: center;
+      margin: 50px;
+    }
+
+    input {
+      padding: 8px;
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Date Duration Calculator</h2>
+
+  <label for="startDay">Start Date:</label>
+  <input type="number" id="startDay" placeholder="Day">
+  <input type="number" id="startMonth" placeholder="Month">
+  <input type="number" id="startYear" placeholder="Year">
+
+  <br>
+
+  <label for="endDay">End Date:</label>
+  <input type="number" id="endDay" placeholder="Day">
+  <input type="number" id="endMonth" placeholder="Month">
+  <input type="number" id="endYear" placeholder="Year">
+
+  <br>
+
+  <button onclick="calculateDuration()">Calculate Duration</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateDuration() {
+      var startDay = parseInt(document.getElementById("startDay").value);
+      var startMonth = parseInt(document.getElementById("startMonth").value);
+      var startYear = parseInt(document.getElementById("startYear").value);
+
+      var endDay = parseInt(document.getElementById("endDay").value);
+      var endMonth = parseInt(document.getElementById("endMonth").value);
+      var endYear = parseInt(document.getElementById("endYear").value);
+
+      var startDate = new Date(startYear, startMonth - 1, startDay);
+      var endDate = new Date(endYear, endMonth - 1, endDay);
+
+      if (isNaN(startDate) || isNaN(endDate) || startDate > endDate) {
+        alert("Please enter valid dates, and ensure that the end date is greater than or equal to the start date.");
+        return;
+      }
+
+      var timeDifference = endDate.getTime() - startDate.getTime();
+      var daysDifference = timeDifference / (1000 * 3600 * 24);
+
+      document.getElementById("result").innerHTML = "Duration: " + daysDifference + " days";
+    }
+  </script>
+
+</body>
+</html>
